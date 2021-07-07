@@ -4,7 +4,7 @@ This is my standard way of spinning up a PHP/NGINX docker environment to develop
 [TOC]
 
 ## Folders
-Place your files into `/sites`
+Place your files into `/site`
 
 ## Docker
 
