@@ -1,0 +1,14 @@
+#!/bin/bash
+docker stop nginx
+docker stop php
+docker stop dbapp
+docker stop dnsmasq
+docker stop phpcli
+docker stop phpcli2
+
+docker rm nginx
+docker rm php
+docker rm dbapp
+docker rm phpcli
+docker rm phpcli2
+docker rm dnsmasq

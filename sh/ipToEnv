@@ -1,0 +1,8 @@
+#!/bin/bash
+SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
+DOCKER_DIR=$(cd "${SCRIPT_DIR}/.."; pwd)
+IP_ENV_FILE="${SCRIPT_DIR}/../ip.env"
+cd $SCRIPT_DIR
+
+touch $IP_ENV_FILE
+echo 'DOCKER_WEB_HOST='`${SCRIPT_DIR}/getip` > ${IP_ENV_FILE}

@@ -1,0 +1,5 @@
+#!/bin/bash
+function resolvepath()
+{
+	echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+}

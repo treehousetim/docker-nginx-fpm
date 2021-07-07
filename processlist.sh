@@ -1,0 +1,1 @@
+docker ps --format "{{.ID}} {{.Names}}"

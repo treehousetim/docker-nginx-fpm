@@ -1,0 +1,83 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - ./logs:/var/log
+        - ..:/site
+        - ./etc/nginx:/etc/nginx/conf.d
+    links:
+        - php
+    networks:
+      - dwg
+
+  php:
+    image: treehousetim/php-fpm-pdo:8.0
+    container_name: php
+    volumes:
+        - ..:/site
+    env_file:
+      - ./.env
+      - ./ip.env
+    links:
+        - db_app
+    networks:
+      - dwg
+
+  dbmaria:
+    image: mariadb:10
+    container_name: dbmaria
+    env_file:
+      - ./.env
+      - ./ip.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_APP_NAME}
+      MYSQL_USER: ${DB_APP_USER}
+      MYSQL_PASSWORD: ${DB_APP_PASS}
+      MYSQL_ALLOW_EMPTY_PASSWORD: 0
+    ports:
+        - '3306:3306'
+    volumes:
+        - ./database/mariadb:/var/lib/mysql
+    networks:
+      - dwg
+
+  dbpostgres:
+    image: postgres:13
+    container_name: dbpostgres
+    env_file:
+      - ./.env
+      - ./ip.env
+    environment:
+      POSTGRES_DB: dwg_app
+      POSTGRES_USER: ${DB_APP_USER}
+      POSTGRES_PASSWORD: ${DB_APP_PASS}
+    ports:
+        - '5432:5432'
+    volumes:
+        - ./database/postgres:/var/lib/postgresql/data
+    networks:
+      - dwg
+
+  # dns:
+  #   image: jpillora/dnsmasq
+  #   container_name: dnsmasq
+  #   ports:
+  #     - '53:53/udp'
+  #     - '5380:8080'
+  #   volumes:
+  #     - ${PWD}/dns/dnsmasq.conf:/etc/dnsmasq.conf
+  #   environment:
+  #     HTTP_USER: "admin"
+  #     HTTP_PASS: "demo"
+  #   networks:
+  #     - dwg
+
+networks:
+    dwg:
+        driver: bridge
