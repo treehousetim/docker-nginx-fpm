@@ -3,4 +3,4 @@
 echo 'Docker Compose Up on Steroids'
  ./sh/ipToEnv
 
-docker-compose --project-name dockerGenericWeb up -d
+docker compose --project-name dockerGenericWeb up -d

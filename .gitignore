@@ -1,3 +1,10 @@
 site/ip.env
 site/.env
 .DS_Store
+.env
+ip.env
+database/mariadb/
+database/postgres/
+logs/nginx/access.log
+logs/nginx/error.log
+site/index.html

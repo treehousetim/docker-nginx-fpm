@@ -1,14 +1,16 @@
 #!/bin/bash
-docker stop nginx
-docker stop php
-docker stop dbapp
+docker stop dwg-nginx
+docker stop dwg-php
+docker stop dbmaria
+docker stop dbpostgres
 docker stop dnsmasq
-docker stop phpcli
-docker stop phpcli2
+docker stop dwg-php8cli
+docker stop dwg-php8cli2
 
-docker rm nginx
-docker rm php
-docker rm dbapp
+docker rm dwg-nginx
+docker rm dwg-php
+docker rm dbmaria
+docker rm dbpostgres
 docker rm phpcli
-docker rm phpcli2
-docker rm dnsmasq
+docker rm dwg-php8cli
+docker rm dwg-php8cli2

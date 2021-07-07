@@ -3,10 +3,10 @@ SCRIPT_DIR=$(cd "$(dirname "$0")"; pwd)
 cd $SCRIPT_DIR
 
 docker run -it \
-	--name php8cli2 \
+	--name dwg-php8cli2 \
 	--network=dwg \
 	--env-file .env \
-	--env-file .ip.env \
+	--env-file ip.env \
 	--rm \
 	-v "./site/":/site \
 	--link dbpostgres \
